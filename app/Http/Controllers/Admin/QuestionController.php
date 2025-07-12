@@ -23,11 +23,15 @@ class QuestionController extends Controller
     {
         $request->validate([
             'text' => 'required|string|max:255',
+            'category' => 'nullable|string|max:255|in:Not categorized,Basic Care and Comfort,Health Promotion and Maintenance,Management of Care,Pharmacological and Parenteral Therapies,Physiological Adaptation,Reduction of Risk Potential,Safety and Infection Control',
             'answers.*.text' => 'required|string|max:255',
             'answers.*.is_correct' => 'boolean',
         ]);
 
-        $question = Question::create(['text' => $request->text]);
+        $question = Question::create([
+            'text' => $request->text,
+            'category' => $request->category,
+        ]);
 
         foreach ($request->answers as $answerData) {
             $question->answers()->create([
@@ -49,11 +53,15 @@ class QuestionController extends Controller
     {
         $request->validate([
             'text' => 'required|string|max:255',
+            'category' => 'nullable|string|max:255|in:Not categorized,Basic Care and Comfort,Health Promotion and Maintenance,Management of Care,Pharmacological and Parenteral Therapies,Physiological Adaptation,Reduction of Risk Potential,Safety and Infection Control',
             'answers.*.text' => 'required|string|max:255',
             'answers.*.is_correct' => 'boolean',
         ]);
 
-        $question->update(['text' => $request->text]);
+        $question->update([
+            'text' => $request->text,
+            'category' => $request->category,
+        ]);
 
         $existingAnswerIds = $question->answers->pluck('id')->toArray();
         $updatedAnswerIds = [];

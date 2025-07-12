@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('NCLEX Exam') }}
+            {{ __('NCLEX Exam') }} @if(isset($category)) - {{ $category }} @endif
         </h2>
     </x-slot>
 
@@ -12,12 +12,13 @@
                     @if ($question)
                         <p class="text-lg font-semibold">{{ $question->text }}</p>
 
-                        <form action="#" method="POST" class="mt-4">
+                        <form action="{{ route('exam.answer') }}" method="POST" class="mt-4">
                             @csrf
+                            <input type="hidden" name="question_id" value="{{ $question->id }}">
                             @foreach ($question->answers as $answer)
                                 <div class="mt-2">
                                     <label class="inline-flex items-center">
-                                        <input type="radio" name="answer" value="{{ $answer->id }}" class="form-radio">
+                                        <input type="radio" name="answer_id" value="{{ $answer->id }}" class="form-radio">
                                         <span class="ml-2">{{ $answer->text }}</span>
                                     </label>
                                 </div>
@@ -31,6 +32,15 @@
                         </form>
                     @else
                         <p>{{ __('No questions available at the moment.') }}</p>
+                        <form action="{{ route('exam.start') }}" method="POST" class="mt-4">
+                            @csrf
+                            @if(isset($category))
+                                <input type="hidden" name="category" value="{{ $category }}">
+                            @endif
+                            <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                                {{ __('Start New Exam') }}
+                            </button>
+                        </form>
                     @endif
                 </div>
             </div>

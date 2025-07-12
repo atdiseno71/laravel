@@ -18,6 +18,21 @@
                         </div>
 
                         <div class="mb-4">
+                            <label for="category" class="block text-sm font-medium text-gray-700">{{ __('Category') }}</label>
+                            <select name="category" id="category" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <option value="">{{ __('Select a category') }}</option>
+                                <option value="Not categorized">Not categorized</option>
+                                <option value="Basic Care and Comfort">Basic Care and Comfort</option>
+                                <option value="Health Promotion and Maintenance">Health Promotion and Maintenance</option>
+                                <option value="Management of Care">Management of Care</option>
+                                <option value="Pharmacological and Parenteral Therapies">Pharmacological and Parenteral Therapies</option>
+                                <option value="Physiological Adaptation">Physiological Adaptation</option>
+                                <option value="Reduction of Risk Potential">Reduction of Risk Potential</option>
+                                <option value="Safety and Infection Control">Safety and Infection Control</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">{{ __('Answers') }}</label>
                             <div id="answers_container">
                                 <div class="flex items-center mt-2">

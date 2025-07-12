@@ -10,6 +10,11 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                    <div class="mt-4">
+                        <a href="{{ route('categories.index') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                            {{ __('Start Exam by Category') }}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
